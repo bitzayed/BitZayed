@@ -1,0 +1,26 @@
+# /etc/conf.d/bitzayedd: config file for /etc/init.d/bitzayedd
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/bitzayed/bitzayed.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/bitzayedd"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/bitzayedd.pid"
+
+# Where to write bitzayedd data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/bitzayedd"
+
+# User and group to own bitzayedd process
+#BITCOIND_USER="bitzayed"
+#BITCOIND_GROUP="bitzayed"
+
+# Path to bitzayedd executable
+#BITCOIND_BIN="/usr/bin/bitzayedd"
+
+# Nice value to run bitzayedd under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+BITCOIND_OPTS=""

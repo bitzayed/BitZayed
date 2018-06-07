@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=BitZayed
+Comment=BitZayed P2P Cryptocurrency
+Comment[fr]=BitZayed, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=BitZayed, eşten eşe kriptografik sanal para birimi
+Exec=bitzayed-qt %u
+Terminal=false
+Type=Application
+Icon=bitzayed128
+MimeType=x-scheme-handler/bitzayed;
+Categories=Office;Finance;

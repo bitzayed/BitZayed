@@ -1,0 +1,11 @@
+[Protocol]
+exec=bitzayed-qt '%u'
+protocol=bitzayed
+input=none
+output=none
+helper=true
+listing=
+reading=false
+writing=false
+makedir=false
+deleting=false

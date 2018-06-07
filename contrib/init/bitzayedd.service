@@ -1,0 +1,26 @@
+[Unit]
+Description=BitZayed's distributed currency daemon
+After=network.target
+
+[Service]
+User=bitzayed
+Group=bitzayed
+
+Type=forking
+PIDFile=/var/lib/bitzayedd/bitzayedd.pid
+
+ExecStart=/usr/bin/bitzayedd -daemon -pid=/var/lib/bitzayedd/bitzayedd.pid \
+          -conf=/etc/bitzayed/bitzayed.conf -datadir=/var/lib/bitzayedd
+
+ExecStop=-/usr/bin/bitzayed-cli -conf=/etc/bitzayed/bitzayed.conf \
+         -datadir=/var/lib/bitzayedd stop
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target
