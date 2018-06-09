@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITZAYED_CRYPTO_SHA256_H
-#define BITZAYED_CRYPTO_SHA256_H
+#ifndef BITCOIN_CRYPTO_SHA256_H
+#define BITCOIN_CRYPTO_SHA256_H
 
 #include <stdint.h>
 #include <stdlib.h>
@@ -32,4 +32,4 @@ public:
  */
 std::string SHA256AutoDetect();
 
-#endif // BITZAYED_CRYPTO_SHA256_H
+#endif // BITCOIN_CRYPTO_SHA256_H
