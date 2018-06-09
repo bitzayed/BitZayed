@@ -4,8 +4,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "zaexcontroldialog.h"
-#include "ui_zaexcontroldialog.h"
+#include "zbzdcontroldialog.h"
+#include "ui_zbzdcontroldialog.h"
 
 #include "main.h"
 #include "walletmodel.h"
