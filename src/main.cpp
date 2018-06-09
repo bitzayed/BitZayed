@@ -2119,6 +2119,9 @@ double ConvertBitsToDouble(unsigned int nBits)
 
 int64_t GetBlockValue(int nHeight)
 {
+	const int PRE_BLOCKCOUNT = 2500;
+	const int FIRST_BLOCKCOUNT = 2500;
+	const int YEARLY_BLOCKCOUNT = 100000;
     int64_t nSubsidy = 0;
 
     if (Params().NetworkID() == CBaseChainParams::TESTNET) {
@@ -2127,60 +2130,22 @@ int64_t GetBlockValue(int nHeight)
     }
 
     // Don't sync this code, it's specified by BZD
-    if (nHeight == 0) {
-        nSubsidy = 1377033 * COIN;
-    } else if (nHeight == 1 ) {
-        nSubsidy = 61800 * COIN;
-    } else if (nHeight > 1 && nHeight <= 2880) {
-        nSubsidy = 1 * COIN;
-	} else if (nHeight > 2880 && nHeight <= 7200) {
+	if (nHeight <= 10) {
+        nSubsidy = 50000 * COIN;
+	} else if (nHeight <= PRE_BLOCKCOUNT && nHeight > 10) {
         nSubsidy = 2 * COIN;
-	} else if (nHeight > 7200 && nHeight <= 15840) {
-        nSubsidy = 3 * COIN;
-	} else if (nHeight > 15840 && nHeight <= 31680) {
-        nSubsidy = 5 * COIN;
-	}  else if (nHeight > 31680 && nHeight <= 59040) {
-        nSubsidy = 8 * COIN;
-	}  else if (nHeight > 59040 && nHeight <= 90720) {
-        nSubsidy = 5 * COIN;
-	}  else if (nHeight > 90720 && nHeight <= 99360) {
-        nSubsidy = 3 * COIN;
-	}  else if (nHeight > 99360 && nHeight <= 103680) {
-        nSubsidy = 2 * COIN;
-	}  else if (nHeight > 103680 && nHeight <= 105120) {
-        nSubsidy = 1 * COIN;
-	}  else if (nHeight > 105120 && nHeight <= 109440) {
-        nSubsidy = 2 * COIN;
-	}  else if (nHeight > 109440 && nHeight <= 118080) {
-        nSubsidy = 3 * COIN;
-	}  else if (nHeight > 118080 && nHeight <= 133920) {
-        nSubsidy = 5 * COIN;
-	}  else if (nHeight > 133920 && nHeight <= 161280) {
-        nSubsidy = 8 * COIN;
-	}  else if (nHeight > 161280 && nHeight <= 207360) {
-        nSubsidy = 13 * COIN;
-	}  else if (nHeight > 207360 && nHeight <= 253440) {
-        nSubsidy = 8 * COIN;
-	}  else if (nHeight > 253440 && nHeight <= 269280) {
-        nSubsidy = 5 * COIN;
-	}  else if (nHeight > 269280 && nHeight <= 277920) {
-        nSubsidy = 3 * COIN;
-	}  else if (nHeight > 277920 && nHeight <= 282240) {
-        nSubsidy = 2 * COIN;
-	}  else if (nHeight > 282240 && nHeight <= 283680) {
-        nSubsidy = 1 * COIN;
-	}  else if (nHeight > 283680 && nHeight <= 288000) {
-        nSubsidy = 2 * COIN;
-	}  else if (nHeight > 288000 && nHeight <= 296640) {
-        nSubsidy = 3 * COIN;
-	}  else if (nHeight > 296640 && nHeight <= 312480) {
-        nSubsidy = 5 * COIN;
-	}  else if (nHeight > 312480 && nHeight <= 624960) {
-        nSubsidy = 8 * COIN;
-    } else if (nHeight > 624960) {
-        nSubsidy = 5 * COIN;
+	} else if (nHeight <= FIRST_BLOCKCOUNT && nHeight > PRE_BLOCKCOUNT) {
+        nSubsidy = 30 * COIN;
+	} else if (nHeight <= (FIRST_BLOCKCOUNT * 1.5) && nHeight > FIRST_BLOCKCOUNT) {
+        nSubsidy = 25 * COIN;
+	} else if (nHeight <= (FIRST_BLOCKCOUNT * 2) && nHeight > (FIRST_BLOCKCOUNT * 1.5) {
+        nSubsidy = 20 * COIN;
+	} else if (nHeight <= (FIRST_BLOCKCOUNT * 3) && nHeight > (FIRST_BLOCKCOUNT * 2)) {
+        nSubsidy = 15 * COIN;
+	} else if (nHeight <= (FIRST_BLOCKCOUNT * 4) && nHeight > (FIRST_BLOCKCOUNT * 3)) {
+        nSubsidy = 12.5 * COIN;
     } else {
-	nSubsidy = 1 * COIN;
+	nSubsidy = 12.5 * COIN;
 	}
     return nSubsidy;
 }
@@ -2190,23 +2155,18 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCou
     int64_t ret = 0;
 
     // Don't sync this code, it's specified by BZD
-    if (nHeight < 1440) {
-        ret = 0;
-    } else if (nHeight >= 1440 && nHeight <= 7200) {
-        ret = blockValue * .25;
-	} else if (nHeight >= 7200 && nHeight <= 59040) {
-        ret = blockValue * .36;
-	} else if (nHeight >= 59040 && nHeight <= 103680) {
-        ret = blockValue * .50;
-	} else if (nHeight >= 103680 && nHeight <= 161280) {
-        ret = blockValue * .70;
-	} else if (nHeight >= 161280) {
-        ret = blockValue * .75;
-    } else {
-        ret = blockValue * .5;
-    }
+	if (nHeight < 100001)
+		ret = blockValue * 1 / 2;  //50%
+	else if (nHeight < 200001)
+		ret = blockValue * 3 / 5;  //60%
+	else if (nHeight < 300001)
+		ret = blockValue * 7 / 10; //70%
+	else if (nHeight < 400001)
+		ret = blockValue * 4 / 5;  //80%
+	else
+		ret = blockValue * 9 / 10;  //90%
 
-    return ret;
+	return ret;
 }
 
 bool IsInitialBlockDownload()
