@@ -76,7 +76,6 @@
         <file alias="walletFrame">res/images/walletFrame.png</file>
         <file alias="splash">res/images/splash.png</file>
         <file alias="splash_testnet">res/images/splash_testnet.png</file>
-        <file alias="qtool">res/images/qtool.png</file>
         <file alias="header">res/images/header.png</file>
     </qresource>
     <qresource prefix="/movies">
