@@ -17,9 +17,8 @@
 uint256 CBlockHeader::GetHash() const
 {
     if(nVersion < 4)
-        return Aergo(BEGIN(nVersion), END(nNonce));
-
-    return Hash(BEGIN(nVersion), END(nAccumulatorCheckpoint));
+        return HashX16R(BEGIN(nVersion), END(nNonce), hashPrevBlock);
+	return Hash(BEGIN(nVersion), END(nAccumulatorCheckpoint));
 }
 
 uint256 CBlock::BuildMerkleTree(bool* fMutated) const

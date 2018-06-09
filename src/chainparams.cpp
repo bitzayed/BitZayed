@@ -55,11 +55,11 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256("0000007b44abb8959b77a6040d1a9c4631b25a0d7fe94c3377b7303bba8e7d5d"))
+    (0, uint256("0x00000dc0ef47bd4e8e35f0a8123374b382c1a26ebf64c238bd26df71bd64a79b"));
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1528528198, // * UNIX timestamp of last checkpoint block
+    1528553198, // * UNIX timestamp of last checkpoint block
     0,       // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     2000        // * estimated number of transactions per day after checkpoint*/
@@ -142,24 +142,24 @@ public:
          *     CTxOut(nValue=50.00000000, scriptPubKey=0xA9037BAC7050C479B121CF)
          *   vMerkleTree: e0028e
          */
-        const char* pszTimestamp = "BitZayed Create 09/06/2018";
+        const char* pszTimestamp = "Don't work for weekends, work for our goals.";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
         txNew.vout[0].nValue = 0 * COIN;
-        txNew.vout[0].scriptPubKey = CScript() << ParseHex("04c10e83b2703ccf322f7dbd62dd5855ac7c10bd055814ce121ba32607d573b8810c02c0582aed05b4deb9c4b77b26d92428c61256cd42774babea0a073b2ed0c9") << OP_CHECKSIG;
+        txNew.vout[0].scriptPubKey = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1528528198;
-        genesis.nBits = 0x1d00ffff;
-        genesis.nNonce = 125755;
+        genesis.nTime = 1528553198;
+        genesis.nBits = 0x1e0ffff0;
+        genesis.nNonce = 180491;
 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0000007b44abb8959b77a6040d1a9c4631b25a0d7fe94c3377b7303bba8e7d5d"));
-        assert(genesis.hashMerkleRoot == uint256("d1e6027a206ed314266c7947501d8c2cb699bc5086b2b44d8b5e8cd28ef408ea"));
+        assert(hashGenesisBlock == uint256("0x00000dc0ef47bd4e8e35f0a8123374b382c1a26ebf64c238bd26df71bd64a79b"));
+        assert(genesis.hashMerkleRoot == uint256("0x2c1a4cc8151f0fcbf3e10a37d1b08e141812836ca8a2015cc4dcf4d579236180"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,0);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
@@ -181,7 +181,7 @@ public:
         nPoolMaxTransactions = 3;
         strSporkKey = "02626bfeb86bc74a803055081e494e450b41d7555ad44cf448b5f9dd66e1c3e5d9";
         strObfuscationPoolDummyAddress = "1F1tAaz5x1HUXrCNLbtMDqcw6o5GNn4xqX";
-        nStartMasternodePayments = 1528528198; //Wed, 25 Jun 2014 20:36:16 GMT
+        nStartMasternodePayments = 1528553198 + 6000; //Wed, 25 Jun 2014 20:36:16 GMT
 
         /** Zerocoin */
         zerocoinModulus = "25195908475657893494027183240048398571429282126204032027777137836043662020707595556264018525880784"
@@ -242,7 +242,7 @@ public:
         nBlockEnforceInvalidUTXO = 9902850; //Start enforcing the invalid UTXO's
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
-        genesis.nTime = 1528528198;
+        genesis.nTime = 1528553198;
         genesis.nNonce = 125755;
 
         hashGenesisBlock = genesis.GetHash();
@@ -267,7 +267,7 @@ public:
         nPoolMaxTransactions = 2;
         strSporkKey = "02626bfeb86bc74a803055081e494e450b41d7555ad44cf448b5f9dd66e1c3e5d9";
         strObfuscationPoolDummyAddress = "1F1tAaz5x1HUXrCNLbtMDqcw6o5GNn4xqX";
-        nStartMasternodePayments = 1528528198; //Fri, 09 Jan 2015 21:05:58 GMT
+        nStartMasternodePayments = 1528553198; //Fri, 09 Jan 2015 21:05:58 GMT
         nBudget_Fee_Confirmations = 3; // Number of confirmations for the finalization fee. We have to make this very short
                                        // here because we only have a 8 block finalization window on testnet
     }

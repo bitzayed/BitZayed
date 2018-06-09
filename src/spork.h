@@ -7,6 +7,7 @@
 #ifndef SPORK_H
 #define SPORK_H
 
+#include "primitives/block.h"
 #include "base58.h"
 #include "key.h"
 #include "main.h"
@@ -86,7 +87,7 @@ public:
 
     uint256 GetHash()
     {
-        uint256 n = Aergo(BEGIN(nSporkID), END(nTimeSigned));
+        uint256 n = HashX16R(BEGIN(nSporkID), END(nTimeSigned), hashPrevBlock);
         return n;
     }
 
